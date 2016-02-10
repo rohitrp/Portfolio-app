@@ -1,6 +1,7 @@
 package io.github.rohitrp.portfolio;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,11 @@ public class CustomAdapter extends ArrayAdapter<String> {
         Button button = (Button) rowView.findViewById(R.id.app_list_button);
         button.setText(appsName[position]);
         button.setBackgroundResource(imgIds[position]);
+
+        Typeface openSansCondensed = Typeface.createFromAsset(
+                context.getAssets(), "font/OpenSans-CondLight.ttf");
+
+        button.setTypeface(openSansCondensed);
 
         return rowView;
     }

@@ -8,18 +8,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
+
+    private String[] appsName = {
+            "Spotify Streamer",
+            "Scores App",
+            "Library App",
+            "Build It Bigger",
+            "XYZ Reader",
+            "Capstone: My Own App"};
+
+    private Integer[] imgIds = {
+            R.drawable.pic,
+            R.drawable.pic1,
+            R.drawable.pic2,
+            R.drawable.pic3,
+            R.drawable.pic4,
+            R.drawable.pic5 };
 
     public MainActivityFragment() {
     }
@@ -29,22 +40,10 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        final String[] appsName = {
-                "Spotify Streamer",
-                "Scores App",
-                "Library App",
-                "Build It Bigger",
-                "XYZ Reader",
-                "Capstone: My Own App"};
-
-        List<String> appsNameList = new ArrayList<String>(
-                Arrays.asList(appsName));
-
-        ArrayAdapter<String> appsAdapter = new ArrayAdapter<String>(
-                this.getContext(),
-                R.layout.app_list,
-                R.id.app_list_button,
-                appsNameList);
+        CustomAdapter appsAdapter = new CustomAdapter(
+                this.getActivity(),
+                appsName,
+                imgIds);
 
         ListView listView = (ListView) rootView.findViewById(R.id.apps_listview);
         listView.setAdapter(appsAdapter);

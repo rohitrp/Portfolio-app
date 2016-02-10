@@ -9,6 +9,8 @@
         android:layout_height="180dp"
         android:gravity="center"
         android:layout_gravity="center"
-        android:id="@+id/app_list_button"/>
+        android:id="@+id/app_list_button"
+        android:focusable="false"
+        android:clickable="false"/>
 
 </LinearLayout>

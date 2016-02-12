@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 /**
  * Created by Rohit on 10-02-2016.
@@ -28,16 +31,30 @@ public class CustomAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View rowView = inflater.inflate(R.layout.app_list, null, true);
+        View rowView;
 
-        Button button = (Button) rowView.findViewById(R.id.app_list_button);
-        button.setText(appsName[position]);
-        button.setBackgroundResource(imgIds[position]);
+        if (view == null) {
+            rowView  = inflater.inflate(R.layout.app_list, null, true);
+        } else {
+            rowView = view;
+        }
+
+        TextView textView = (TextView) rowView.findViewById(R.id.app_textview);
+        textView.setText(appsName[position]);
 
         Typeface openSansCondensed = Typeface.createFromAsset(
                 context.getAssets(), "font/OpenSans-CondLight.ttf");
 
-        button.setTypeface(openSansCondensed);
+        textView.setTypeface(openSansCondensed);
+
+        ImageView imageButton = (ImageView) rowView.findViewById(R.id.app_imageview);
+
+        Glide
+                .with(getContext())
+                .load(imgIds[position])
+                .centerCrop()
+                .crossFade()
+                .into(imageButton);
 
         return rowView;
     }
